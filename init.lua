@@ -41,7 +41,7 @@ minetest.register_node(":default:apple", {
 
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		minetest.set_node(pos, {name = "endless_apples:apple_mark", param2 = 1})
-		minetest.get_node_timer(pos):start(3)
+		minetest.get_node_timer(pos):start(math.random(120, 300))
 	end,
 	drop = "endless_apples:apple"
 })
