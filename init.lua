@@ -43,6 +43,9 @@ minetest.register_node(":default:apple", {
 		minetest.set_node(pos, {name = "endless_apples:apple_mark", param2 = 1})
 		minetest.get_node_timer(pos):start(math.random(120, 300))
 	end,
+	after_place_node = function(pos, placer, itemstack, pointed_thing)
+		minetest.set_node(pos, {name = "endless_apples:apple", param2 = 1})		
+	end,
 	drop = "endless_apples:apple"
 })
 
