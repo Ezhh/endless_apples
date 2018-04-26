@@ -59,6 +59,10 @@ minetest.register_node("endless_apples:apple_mark", {
 	drop = "",
 	groups = {not_in_creative_inventory = 1},
 	on_timer = function(pos, elapsed)
+		if minetest.get_node(pos).param1 < 12 then -- enough light to grow apples?
+			minetest.get_node_timer(pos):start(math.random(40, 75)) -- no: try again in 40-75 seconds
+			return
+		end
 		minetest.set_node(pos, {name = "default:apple"})
 	end
 })
