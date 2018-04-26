@@ -38,7 +38,6 @@ minetest.register_node(":default:apple", {
 		not_in_creative_inventory = 1},
 	on_use = minetest.item_eat(2),
 	sounds = default.node_sound_leaves_defaults(),
-
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		minetest.set_node(pos, {name = "endless_apples:apple_mark", param2 = 1})
 		minetest.get_node_timer(pos):start(math.random(120, 300))
@@ -62,6 +61,10 @@ minetest.register_node("endless_apples:apple_mark", {
 	drop = "",
 	groups = {not_in_creative_inventory = 1},
 	on_timer = function(pos, elapsed)
+		if minetest.get_node(pos).param1 < 12 then
+			minetest.get_node_timer(pos):start(math.random(40, 75))
+			return
+		end
 		minetest.set_node(pos, {name = "default:apple"})
 	end
 })
