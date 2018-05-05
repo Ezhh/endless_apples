@@ -43,7 +43,7 @@ minetest.register_node("endless_apples:apple_mark", {
 	drop = "",
 	groups = {not_in_creative_inventory = 1},
 	on_timer = function(pos, elapsed)
-		if minetest.get_node(pos).param1 < 12 then
+		if minetest.get_node_light(pos) < 13 then
 			minetest.get_node_timer(pos):start(math.random(40, 75))
 			return
 		end
