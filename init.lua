@@ -43,10 +43,12 @@ minetest.register_node("endless_apples:apple_mark", {
 	drop = "",
 	groups = {not_in_creative_inventory = 1},
 	on_timer = function(pos, elapsed)
-		if minetest.get_node_light(pos) < 13 then
+		if not minetest.find_node_near(pos, 1, "default:leaves") then
+			minetest.remove_node(pos)
+		elseif minetest.get_node_light(pos) < 13 then
 			minetest.get_node_timer(pos):start(math.random(40, 75))
-			return
+		else 
+			minetest.set_node(pos, {name = "default:apple"})
 		end
-		minetest.set_node(pos, {name = "default:apple"})
 	end
 })
